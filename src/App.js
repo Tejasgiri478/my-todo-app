@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useReducer } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import Active from "./components/Active";
 import Completed from "./components/Completed";
 import AllTask from "./components/AllTask";
@@ -63,7 +63,7 @@ function App() {
     }
   }, [userToken]);
   return (
-    <BrowserRouter>
+    <HashRouter>
       <TokenContext.Provider
         value={{ userToken, tokenDispatch, user, userDispatch }}
       >
@@ -83,7 +83,7 @@ function App() {
           </Routes>
         </TaskContext.Provider>
       </TokenContext.Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
