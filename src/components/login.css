@@ -1,0 +1,43 @@
+/* Login.css */
+
+/* Default styles */
+.login-container {
+  padding-bottom: 48px;
+}
+
+.login-image {
+  width: 320px;
+  height: auto;
+  display: block;
+  margin: 0 auto 24px auto;
+}
+
+/* Tablet devices (max-width: 900px) */
+@media (max-width: 900px) {
+  .login-container {
+    padding-bottom: 32px;
+  }
+  .login-image {
+    width: 220px;
+  }
+}
+
+/* Mobile devices (max-width: 600px) */
+@media (max-width: 600px) {
+  .login-container {
+    padding-bottom: 20px;
+  }
+  .login-image {
+    width: 140px;
+  }
+}
+
+/* Small devices (max-width: 400px) */
+@media (max-width: 400px) {
+  .login-container {
+    padding-bottom: 12px;
+  }
+  .login-image {
+    width: 90px;
+  }
+}

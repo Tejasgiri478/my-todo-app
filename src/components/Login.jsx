@@ -8,6 +8,7 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import "./login.css";
 
 function Login() {
     const [formData, setFormData] = useState({})
@@ -33,11 +34,11 @@ function Login() {
         e.preventDefault();
         setIsLoading(true);
         setError(null);
-        
+
         try {
             const result = await axios.post("/user/login", formData);
             setSuccess(true);
-            
+
             // Delay to show success message before redirecting
             setTimeout(() => {
                 tokenDispatch({ type: "SET_TOKEN", payload: result.data.token });
@@ -58,7 +59,7 @@ function Login() {
             setResetMessage({ type: 'error', text: 'Please enter your email address' });
             return;
         }
-        
+
         try {
             await axios.post("/forgotPassword/forgotPassword", { email });
             setResetMessage({ type: 'success', text: 'Password reset link sent to your email' });
@@ -91,7 +92,7 @@ function Login() {
                                         </h2>
                                         <p className="text-gray-500">Log in to manage your tasks</p>
                                     </div>
-                                    
+
                                     <form method='post' onSubmit={handleSubmit} className="bg-white p-5 rounded-lg shadow-md min-h-[400px]">
                                         {error && (
                                             <div className="flex items-center bg-red-100 border border-red-400 text-red-700 px-2 py-1 rounded mb-2 relative text-sm" role="alert">
@@ -99,14 +100,14 @@ function Login() {
                                                 <span className="block sm:inline">{error.message}</span>
                                             </div>
                                         )}
-                                        
+
                                         {success && (
                                             <div className="flex items-center bg-green-100 border border-green-400 text-green-700 px-2 py-1 rounded mb-2 relative text-sm" role="alert">
                                                 <CheckCircleIcon className="mr-1 text-sm" />
                                                 <span className="block sm:inline">Login successful! Redirecting...</span>
                                 </div>
                                         )}
-                                        
+
                                         <div className="mb-4">
                                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                                     <input
@@ -119,7 +120,7 @@ function Login() {
                                                 required
                                             />
                                 </div>
-                                        
+
                                         <div className="mb-4 relative">
                                             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
                                             <div className="relative">
@@ -132,8 +133,8 @@ function Login() {
                                         onChange={handleChange}
                                                     required
                                                 />
-                                                <button 
-                                                    type="button" 
+                                                <button
+                                                    type="button"
                                                     onClick={togglePasswordVisibility}
                                                     className="absolute inset-y-0 right-0 pr-2 flex items-center text-gray-700 cursor-pointer"
                                                 >
@@ -147,21 +148,21 @@ function Login() {
                                         <input
                                             type="checkbox"
                                             className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                                    id="rememberMe" 
+                                                    id="rememberMe"
                                                 />
                                                 <label className="form-check-label inline-block text-gray-800 text-sm" htmlFor="rememberMe">
                                                     Remember me
                                                 </label>
                                     </div>
-                                            <button 
-                                                type="button" 
+                                            <button
+                                                type="button"
                                                 onClick={() => setShowForgotPassword(true)}
                                                 className="text-blue-600 hover:text-blue-700 hover:underline text-sm"
                                             >
                                                 Forgot password?
                                             </button>
                                 </div>
-                                        
+
                                     <button
                                         type="submit"
                                             className={`inline-block px-6 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full ${isLoading || success ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800'}`}
@@ -169,11 +170,11 @@ function Login() {
                                         >
                                             {isLoading ? 'Logging in...' : success ? 'Login Successful!' : 'Login'}
                                     </button>
-                                        
+
                                         <div className="flex items-center my-3 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
                                             <p className="text-center font-semibold mx-4 mb-0 text-sm">Or</p>
                                         </div>
-                                        
+
                                         <Link
                                             to="/register"
                                             className="inline-block px-6 py-3 bg-transparent text-green-600 font-medium text-sm leading-snug uppercase rounded hover:text-green-700 hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-200 transition duration-150 ease-in-out w-full text-center border border-gray-300"
@@ -203,7 +204,7 @@ function Login() {
                                                 <span className="block sm:inline">{resetMessage.text}</span>
                                             </div>
                                         )}
-                                        
+
                                         <div className="mb-4">
                                             <label htmlFor="reset-email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                                             <input
@@ -216,22 +217,22 @@ function Login() {
                                                 required
                                             />
                                         </div>
-                                        
+
                                         <button
                                             type="submit"
                                             className="inline-block px-6 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
                                         >
                                             Send Reset Link
                                         </button>
-                                        
-                                        <button 
-                                            type="button" 
+
+                                        <button
+                                            type="button"
                                             onClick={() => setShowForgotPassword(false)}
                                             className="inline-block px-6 py-3 bg-transparent text-blue-600 font-medium text-sm leading-snug uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-200 transition duration-150 ease-in-out w-full text-center border border-gray-300 mb-4"
                                         >
                                             Back to Login
                                         </button>
-                                        
+
                                         <div className="mt-6">
                                             <div className="bg-blue-50 p-4 rounded-lg">
                                                 <h3 className="text-sm font-medium text-blue-800 mb-2">Password Reset Information</h3>
