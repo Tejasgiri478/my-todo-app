@@ -12,7 +12,8 @@ function Header() {
 
   const logout = () => {
     localStorage.removeItem("authToken");
-    window.location.href = "/login";
+    // window.location.href = "/login";
+    navigate("/login");
   };
 
   const handleLogoClick = () => {
