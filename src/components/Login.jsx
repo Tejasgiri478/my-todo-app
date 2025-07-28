@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Navigate, Link } from "react-router-dom";
+import { Navigate, Link, useNavigate } from "react-router-dom";
 import axios from "../Axios/axios.js";
 import TokenContext from "../context/TokenContext.js";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -20,6 +20,7 @@ function Login() {
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [resetMessage, setResetMessage] = useState(null);
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -38,13 +39,10 @@ function Login() {
     try {
       const result = await axios.post("/user/login", formData);
       setSuccess(true);
-
-      // Delay to show success message before redirecting
-      setTimeout(() => {
-        tokenDispatch({ type: "SET_TOKEN", payload: result.data.token });
-        userDispatch({ type: "SET_USER", payload: result.data.user });
-        localStorage.setItem("authToken", JSON.stringify(result.data.token));
-      }, 1000);
+      tokenDispatch({ type: "SET_TOKEN", payload: result.data.token });
+      userDispatch({ type: "SET_USER", payload: result.data.user });
+      localStorage.setItem("authToken", JSON.stringify(result.data.token));
+      navigate("/");
     } catch (error) {
       console.log(error);
       setError({ message: error.response.data.message });
@@ -80,7 +78,7 @@ function Login() {
 
   return (
     <div>
-      {userToken && <Navigate to="/" />}
+      {/* Remove: {userToken && <Navigate to="/" />} */}
       <section className="login-container overflow-y-hidden h-screen">
         <div className="container px-6 py-6 h-full">
           <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">

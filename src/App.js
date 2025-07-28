@@ -18,9 +18,13 @@ import ResetPassword from "./components/forgotPassword/ResetPassword";
 import axios from "./Axios/axios.js";
 
 function App() {
-  const token = JSON.parse(localStorage.getItem("authToken"));
+  // Remove the old token variable
+  // const token = JSON.parse(localStorage.getItem("authToken"));
   const [tasks, dispatch] = useReducer(taskReducer, []);
-  const [userToken, tokenDispatch] = useReducer(tokenReducer, token);
+  const [userToken, tokenDispatch] = useReducer(
+    tokenReducer,
+    JSON.parse(localStorage.getItem("authToken"))
+  );
   const [user, userDispatch] = useReducer(userReducer, {});
 
   useEffect(() => {
@@ -70,7 +74,7 @@ function App() {
         <TaskContext.Provider value={{ tasks, dispatch }}>
           <Routes>
             <Route path="/" element={<Header />}>
-              <Route path="/" element={token ? <Layout /> : <Login />}>
+              <Route path="/" element={userToken ? <Layout /> : <Login />}>
                 <Route index element={<AllTask />} />
                 <Route path="active" element={<Active />} />
                 <Route path="completed" element={<Completed />} />

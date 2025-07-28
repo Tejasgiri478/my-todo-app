@@ -6,24 +6,21 @@ import "./header.css";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
 function Header() {
-  const token = localStorage.getItem("authToken");
-  const { user } = useContext(TokenContext);
+  const { userToken, user, tokenDispatch } = useContext(TokenContext);
   const navigate = useNavigate();
 
   const logout = () => {
     localStorage.removeItem("authToken");
-    // window.location.href = "/login";
+    tokenDispatch({ type: "REMOVE_TOKEN" });
     navigate("/login");
   };
 
   const handleLogoClick = () => {
-    if (token) {
-      // If user is logged in, toggle to add task screen
+    if (userToken) {
       const currentShowTaskList = localStorage.getItem("showTaskList");
       localStorage.setItem("showTaskList", "false");
       navigate("/");
     } else {
-      // If user is not logged in, go to login screen
       navigate("/login");
     }
   };
@@ -51,7 +48,7 @@ function Header() {
           </div>
         </div>
         <div className="flex justify-between z-10">
-          {token ? (
+          {userToken ? (
             <div className="flex items-center justify-center">
               <p className="mr-5 text-white">
                 Welcome,{" "}
