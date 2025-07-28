@@ -24,8 +24,8 @@ function Task({ task, id }) {
       text: "This task will be permanently deleted!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#F87171",
-      cancelButtonColor: "#60A5FA",
+      confirmButtonColor: "#EF4444",
+      cancelButtonColor: "#6B7280",
       confirmButtonText: "Yes, delete it!",
       cancelButtonText: "Cancel",
       background: "#fff",
@@ -34,10 +34,10 @@ function Task({ task, id }) {
         title: "text-xl font-bold text-gray-800",
         content: "text-gray-700",
         confirmButton:
-          "px-4 py-2 rounded-lg text-white font-medium transition-all duration-300 hover:shadow-lg",
+          "px-4 py-2 rounded-lg bg-gradient-to-r from-red-500 to-orange-500 text-white font-medium hover:from-red-600 hover:to-orange-600 transition-all duration-300 hover:shadow-lg",
         cancelButton:
-          "px-4 py-2 rounded-lg text-white font-medium transition-all duration-300 hover:shadow-lg",
-        popup: "rounded-xl border-t-4 border-pink-500 shadow-2xl",
+          "px-4 py-2 rounded-lg bg-gradient-to-r from-gray-500 to-gray-600 text-white font-medium hover:from-gray-600 hover:to-gray-700 transition-all duration-300 hover:shadow-lg",
+        popup: "rounded-xl border-t-4 border-red-500 shadow-2xl",
       },
     });
 
@@ -74,8 +74,8 @@ function Task({ task, id }) {
             title: "text-xl font-bold text-gray-800",
             content: "text-gray-700",
             confirmButton:
-              "px-4 py-2 rounded-lg bg-gradient-to-r from-blue-400 to-indigo-500 text-white font-medium hover:from-blue-500 hover:to-indigo-600 transition-all duration-300 hover:shadow-lg",
-            popup: "rounded-xl border-t-4 border-green-500 shadow-2xl",
+              "px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:shadow-lg",
+            popup: "rounded-xl border-t-4 border-blue-500 shadow-2xl",
           },
         });
       } catch (error) {
@@ -90,7 +90,7 @@ function Task({ task, id }) {
             title: "text-xl font-bold text-gray-800",
             content: "text-gray-700",
             confirmButton:
-              "px-4 py-2 rounded-lg bg-gradient-to-r from-blue-400 to-indigo-500 text-white font-medium hover:from-blue-500 hover:to-indigo-600 transition-all duration-300 hover:shadow-lg",
+              "px-4 py-2 rounded-lg bg-gradient-to-r from-red-500 to-orange-500 text-white font-medium hover:from-red-600 hover:to-orange-600 transition-all duration-300 hover:shadow-lg",
             popup: "rounded-xl border-t-4 border-red-500 shadow-2xl",
           },
         });
@@ -144,17 +144,18 @@ function Task({ task, id }) {
       showCancelButton: true,
       confirmButtonText: "Update",
       cancelButtonText: "Cancel",
-      confirmButtonColor: "#4F46E5",
+      confirmButtonColor: "#EF4444",
       cancelButtonColor: "#6B7280",
       background: "#fff",
-      width: "32em",
+      borderRadius: "15px",
       customClass: {
         title: "text-xl font-bold text-gray-800",
+        content: "text-gray-700",
         confirmButton:
-          "px-4 py-2 rounded-lg text-white font-medium transition-all duration-300 hover:shadow-lg",
+          "px-4 py-2 rounded-lg bg-gradient-to-r from-red-500 to-orange-500 text-white font-medium hover:from-red-600 hover:to-orange-600 transition-all duration-300 hover:shadow-lg",
         cancelButton:
-          "px-4 py-2 rounded-lg text-white font-medium transition-all duration-300 hover:shadow-lg",
-        popup: "rounded-xl border-t-4 border-blue-500 shadow-2xl",
+          "px-4 py-2 rounded-lg bg-gradient-to-r from-gray-500 to-gray-600 text-white font-medium hover:from-gray-600 hover:to-gray-700 transition-all duration-300 hover:shadow-lg",
+        popup: "rounded-xl border-t-4 border-red-500 shadow-2xl",
       },
       preConfirm: () => {
         return {
@@ -206,8 +207,8 @@ function Task({ task, id }) {
             title: "text-xl font-bold text-gray-800",
             content: "text-gray-700",
             confirmButton:
-              "px-4 py-2 rounded-lg bg-gradient-to-r from-blue-400 to-indigo-500 text-white font-medium hover:from-blue-500 hover:to-indigo-600 transition-all duration-300 hover:shadow-lg",
-            popup: "rounded-xl border-t-4 border-green-500 shadow-2xl",
+              "px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:shadow-lg",
+            popup: "rounded-xl border-t-4 border-blue-500 shadow-2xl",
           },
         });
       } catch (error) {
@@ -222,7 +223,7 @@ function Task({ task, id }) {
             title: "text-xl font-bold text-gray-800",
             content: "text-gray-700",
             confirmButton:
-              "px-4 py-2 rounded-lg bg-gradient-to-r from-blue-400 to-indigo-500 text-white font-medium hover:from-blue-500 hover:to-indigo-600 transition-all duration-300 hover:shadow-lg",
+              "px-4 py-2 rounded-lg bg-gradient-to-r from-red-500 to-orange-500 text-white font-medium hover:from-red-600 hover:to-orange-600 transition-all duration-300 hover:shadow-lg",
             popup: "rounded-xl border-t-4 border-red-500 shadow-2xl",
           },
         });
@@ -295,15 +296,15 @@ function Task({ task, id }) {
   const getCategoryColor = (category) => {
     switch (category) {
       case "personal":
-        return "purple";
-      case "work":
         return "blue";
+      case "work":
+        return "purple";
       case "shopping":
-        return "green";
+        return "teal";
       case "others":
-        return "gray";
+        return "orange";
       default:
-        return "gray";
+        return "indigo";
     }
   };
 
@@ -329,10 +330,10 @@ function Task({ task, id }) {
   return (
     <div
       className={`relative bg-white py-4 px-5 rounded-lg shadow-md mb-4 overflow-hidden
-            border-l-4 border-${color}-500 hover:shadow-lg transition-all duration-200`}
+            border-l-4 border-${color}-500 hover:shadow-lg transition-all duration-200 transform hover:scale-[1.01]`}
     >
       <div
-        className={`absolute top-0 left-0 w-full h-full opacity-5 bg-${color}-500`}
+        className={`absolute top-0 left-0 w-full h-full opacity-5 bg-${color}-400`}
       ></div>
 
       <div className="flex items-start">
@@ -350,20 +351,20 @@ function Task({ task, id }) {
         <div className="task-info text-gray-800 flex-grow z-10">
           <h4
             className={`task-title text-lg font-medium capitalize ${
-              task.completed ? "line-through text-gray-500" : ""
+              task.completed ? "line-through text-gray-500" : `text-${color}-700`
             }`}
           >
             {task.title}
           </h4>
           <p
             className={`task-description mt-1 text-sm ${
-              task.completed ? "line-through text-gray-500" : "text-gray-600"
+              task.completed ? "line-through text-gray-500" : `text-${color}-600`
             }`}
           >
             {task.description}
           </p>
           <div className="flex items-center justify-between mt-3">
-            <div className="text-xs text-gray-500 italic">
+            <div className={`text-xs text-${color}-500 italic`}>
               {task?.createdAt ? (
                 <p>{moment(task.createdAt).fromNow()}</p>
               ) : (
@@ -373,7 +374,7 @@ function Task({ task, id }) {
 
             {/* Category Badge */}
             <div
-              className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-${color}-100 text-${color}-800 shadow-sm`}
+              className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-${color}-100 text-${color}-700 shadow-sm border border-${color}-200`}
             >
               <span className="mr-1">{icon}</span>
               {task.category.charAt(0).toUpperCase() + task.category.slice(1)}
@@ -385,7 +386,7 @@ function Task({ task, id }) {
         <div className="task-actions flex items-center gap-3 z-10 ml-3">
           <button
             onClick={handleEdit}
-            className="p-2 bg-gradient-to-r from-blue-400 to-indigo-500 text-white rounded-full hover:from-blue-500 hover:to-indigo-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
+            className={`p-2 bg-gradient-to-r from-${color}-500 to-${color}-600 text-white rounded-full hover:from-${color}-600 hover:to-${color}-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${color}-400`}
             title="Edit task"
           >
             <EditIcon style={{ fontSize: 18 }} className="animate-pulse" />
@@ -393,7 +394,7 @@ function Task({ task, id }) {
 
           <button
             onClick={handleRemove}
-            className="p-2 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-full hover:from-pink-600 hover:to-red-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
+            className="p-2 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full hover:from-red-600 hover:to-orange-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
             title="Delete task"
           >
             <DeleteIcon style={{ fontSize: 18 }} className="animate-pulse" />

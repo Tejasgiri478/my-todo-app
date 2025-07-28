@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Navigate, Link } from "react-router-dom";
 import axios from "../Axios/axios.js";
 import TokenContext from "../context/TokenContext.js";
@@ -7,7 +7,10 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
-import { FaCheckCircle } from "react-icons/fa";
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
+import PersonIcon from "@mui/icons-material/Person";
+import "./login.css";
 
 function Register() {
   const [formData, setFormData] = useState({});
@@ -16,6 +19,12 @@ function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [animateForm, setAnimateForm] = useState(false);
+
+  // Add animation effect when component mounts
+  useEffect(() => {
+    setAnimateForm(true);
+  }, []);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -52,35 +61,36 @@ function Register() {
   return (
     <div>
       {userToken && <Navigate to="/" />}
-      <section className="register-container overflow-y-hidden h-screen">
-        <div className="container px-6 py-6 h-full">
-          <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-            <div className="md:w-8/12 lg:w-5/12 mb-4 md:mb-0 auth-image-container">
+      <section className="register-container min-h-screen overflow-y-auto overflow-x-hidden login-container flex items-center justify-center">
+        <div className="container px-2 sm:px-6 py-6">
+          <div className="flex justify-center items-center mx-auto flex-wrap text-gray-800 gap-8 relative">
+            <div className="md:w-8/12 lg:w-5/12 auth-image-container px-6 flex justify-center mb-4 md:mb-0">
               <img
                 src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-                className="w-full"
+                className="w-full max-w-md object-contain transform transition-all duration-500 hover:scale-105"
                 alt="Phone"
               />
             </div>
-            <div className="md:w-8/12 lg:w-6/12 lg:ml-10">
-              <div className="flex flex-col items-center mb-4">
-                <div className="inline-block p-3 bg-gradient-to-r from-green-500 to-teal-500 rounded-full mb-3 shadow-lg">
-                  <PersonAddIcon className="text-white text-4xl" />
+            <div className="md:w-8/12 lg:w-5/12 flex justify-center">
+              <div className="flex flex-col items-center w-full max-w-md">
+                <div className="flex flex-col items-center mb-4">
+                  <div className="inline-block p-3 bg-gradient-to-r from-green-500 to-teal-500 rounded-full mb-3 shadow-lg transform transition-all duration-500 hover:scale-110">
+                    <PersonAddIcon className="text-white text-4xl" />
+                  </div>
+                  <h2 className="text-2xl font-bold">
+                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-teal-500">
+                      Create Account
+                    </span>
+                  </h2>
+                  <p className="text-gray-500 font-light">
+                    Start organizing your tasks today
+                  </p>
                 </div>
-                <h2 className="text-2xl font-bold">
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-teal-500">
-                    Create Account
-                  </span>
-                </h2>
-                <p className="text-gray-500">
-                  Start organizing your tasks today
-                </p>
-              </div>
-
-              <form
+                
+                <form
                 method="post"
                 onSubmit={handleSubmit}
-                className="bg-white p-5 rounded-lg shadow-md min-h-[400px]"
+                className={`bg-white p-5 rounded-lg shadow-md min-h-[400px] w-full transform transition-all duration-500 ${animateForm ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
               >
                 {error && (
                   <div
@@ -107,8 +117,9 @@ function Register() {
                 <div className="mb-4">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium text-gray-700 mb-1 flex items-center"
                   >
+                    <PersonIcon className="mr-1 text-green-500" fontSize="small" />
                     Full Name
                   </label>
                   <input
@@ -125,8 +136,9 @@ function Register() {
                 <div className="mb-4">
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium text-gray-700 mb-1 flex items-center"
                   >
+                    <EmailIcon className="mr-1 text-green-500" fontSize="small" />
                     Email Address
                   </label>
                   <input
@@ -143,8 +155,9 @@ function Register() {
                 <div className="mb-4 relative">
                   <label
                     htmlFor="password"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium text-gray-700 mb-1 flex items-center"
                   >
+                    <LockIcon className="mr-1 text-green-500" fontSize="small" />
                     Password
                   </label>
                   <div className="relative">
@@ -196,7 +209,7 @@ function Register() {
 
                 <button
                   type="submit"
-                  className={`inline-block px-6 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full ${
+                  className={`inline-block px-6 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-300 ease-in-out w-full ${
                     isLoading || success
                       ? "bg-green-400"
                       : "bg-green-600 hover:bg-green-700 focus:bg-green-700 active:bg-green-800"
@@ -223,6 +236,7 @@ function Register() {
                   Already have an account? Login
                 </Link>
               </form>
+              </div>
             </div>
           </div>
         </div>

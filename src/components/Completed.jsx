@@ -19,9 +19,9 @@ function Completed() {
                         />
                     ))
                 ) : (
-                    <div className="flex flex-col items-center justify-center py-10 text-gray-500">
-                        <FaCheckCircle className="text-5xl mb-4 text-blue-400" />
-                        <h1 className="text-xl font-medium">No Completed Tasks</h1>
+                    <div className="flex flex-col items-center justify-center py-10 text-green-500">
+                        <FaCheckCircle className="text-5xl mb-4 text-green-400 animate-pulse" />
+                        <h1 className="text-xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-teal-500">No Completed Tasks</h1>
                         <p className="mt-2 text-sm">Complete some tasks to see them here</p>
                     </div>
                 )
